@@ -1,4 +1,4 @@
-module zorodnss
+module github.com/ZxOxRxO/zorodnss
 
 go 1.22.5
 
