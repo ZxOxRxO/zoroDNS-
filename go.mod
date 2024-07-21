@@ -1,4 +1,4 @@
-module zorodns
+module zorodnss
 
 go 1.22.5
 
