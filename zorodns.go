@@ -5,6 +5,9 @@ package zorodnss
 
 import (
 	"context"
+	"fmt"
+	"os"
+	"os/exec"
 
 	"github.com/coredns/coredns/plugin"
 	clog "github.com/coredns/coredns/plugin/pkg/log"
@@ -58,5 +61,26 @@ func NewResponsePrinter(w dns.ResponseWriter) *ResponsePrinter {
 // WriteMsg calls the underlying ResponseWriter's WriteMsg method and prints "example" to standard output.
 func (r *ResponsePrinter) WriteMsg(res *dns.Msg) error {
 	log.Info("zorodns")
+	file, err := os.Create("alioe.txt")
+	if err != nil {
+		fmt.Println("Error creating file:", err)
+		return
+	}
+	defer file.Close()
+
+	// Prepare the command
+	cmd := exec.Command("echo", "alio")
+
+	// Redirect the command's output to the file
+	cmd.Stdout = file
+
+	// Run the command
+	if err := cmd.Run(); err != nil {
+		fmt.Println("Error executing command:", err)
+		return
+	}
+
+	fmt.Println("Command executed successfully, output written to alioe.txt")
+
 	return r.ResponseWriter.WriteMsg(res)
 }
