@@ -1,4 +1,4 @@
-package zorodns
+package zorodnss
 
 import (
 	"github.com/coredns/caddy"
